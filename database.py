@@ -41,6 +41,13 @@ class NEODatabase:
         """
         self._neos = neos
         self._approaches = approaches
+        self.neo_des = dict((neo.designation, neo) for neo in self._neos)
+        self.neo_names = dict((neo.name, neo) for neo in self._neos)
+
+        for i in self._approaches:
+            if i._designation in self.neo_des.keys():
+                i.neo = self.neo_des[i._designation]
+                self.neo_des[i._designation].approaches.append(i)
 
         # TODO: What additional auxiliary data structures will be useful?
 
@@ -60,7 +67,10 @@ class NEODatabase:
         :return: The `NearEarthObject` with the desired primary designation, or `None`.
         """
         # TODO: Fetch an NEO by its primary designation.
-        return None
+        if designation in self.neo_des.keys():
+            return self.neo_des[designation]
+        else:
+            return None
 
     def get_neo_by_name(self, name):
         """Find and return an NEO by its name.
@@ -77,7 +87,10 @@ class NEODatabase:
         :return: The `NearEarthObject` with the desired name, or `None`.
         """
         # TODO: Fetch an NEO by its name.
-        return None
+        if name in self.neo_names.keys():
+            return self.neo_names[name]
+        else:
+            return None
 
     def query(self, filters=()):
         """Query close approaches to generate those that match a collection of filters.
@@ -95,4 +108,6 @@ class NEODatabase:
         """
         # TODO: Generate `CloseApproach` objects that match all of the filters.
         for approach in self._approaches:
-            yield approach
+            flag = False in map(lambda i: i(approach), filters)
+            if not flag:
+                yield approach
