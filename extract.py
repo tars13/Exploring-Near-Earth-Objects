@@ -34,10 +34,10 @@ def load_neos(neo_csv_path):
             n["pha"] = False if n["pha"] in ["", "N"] else True
             try:
                 neo = NearEarthObject(
-                    designation = n["pdes"],
-                    name = n["name"],
-                    diameter = n["diameter"],
-                    hazardous = n["pha"],
+                    designation=n["pdes"],
+                    name=n["name"],
+                    diameter=n["diameter"],
+                    hazardous=n["pha"],
                 )
             except Exception as e:
                 print(e)
@@ -68,5 +68,5 @@ def load_approaches(cad_json_path):
             except Exception as e:
                 print(e)
             else:
-                approaches.append(approach)    
+                approaches.append(approach) 
     return approaches

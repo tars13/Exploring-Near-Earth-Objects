@@ -20,6 +20,7 @@ You'll edit this file in Task 1.
 from helpers import cd_to_datetime, datetime_to_str
 import math
 
+
 class NearEarthObject:
     """A near-Earth object (NEO).
 
@@ -57,7 +58,7 @@ class NearEarthObject:
 
     def __str__(self):
         """Return `str(self)`."""
-       
+
         result = f'NEO {self.fullname} has'
         if math.isnan(self.diameter):
             result += "an unknown diameter"
@@ -75,14 +76,15 @@ class NearEarthObject:
                f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})"
 
     def serialize(self):
+        """Return a dict representation of self attributes."""
         neo_dict = dict()
         if self.name is None:
             neo_dict['name'] = ""
 
         else:
-            neo_dict['name'] = "{name}".format(name = self.name)
-        
-        neo_dict['designation'] = "{designation}".format(designation = self.designation)
+            neo_dict['name'] = "{name}".format(name=self.name)
+
+        neo_dict['designation'] = "{designation}".format(designation=self.designation)
         neo_dict['diameter_km'] = self.diameter
         neo_dict['potentially_hazardous'] = self.hazardous
 
@@ -109,7 +111,7 @@ class CloseApproach:
         :param info: A dictionary of excess keyword arguments supplied to the constructor.
         """
         self._designation = info.get("designation")
-        self.time = cd_to_datetime(info.get("time"))  
+        self.time = cd_to_datetime(info.get("time"))
         self.distance = info.get("distance", float("nan"))
         self.velocity = info.get("velocity", float("nan"))
 
@@ -136,7 +138,6 @@ class CloseApproach:
     def __str__(self):
         """Return `str(self)`."""
         # human-readable string representation.
-
         return f"On {self.time_str}, '{self.neo.fullname}' approaches Earth at a distance of {self.distance:.2f} au and a velocity of {self.velocity:.2f} km/s."
 
     def __repr__(self):
@@ -145,8 +146,9 @@ class CloseApproach:
                f"velocity={self.velocity:.2f}, neo={self.neo!r})"
 
     def serialize(self):
+        """Return a dict representation of self attributes."""
         appraoch_dict = dict()
-        appraoch_dict['datetime_utc'] = "{dt}".format(dt = self.time_str)
+        appraoch_dict['datetime_utc'] = "{dt}".format(dt=self.time_str)
         appraoch_dict['distance_au'] = self.distance
         appraoch_dict['velocity_km_s'] = self.velocity
 

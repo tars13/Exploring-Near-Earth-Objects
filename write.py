@@ -34,12 +34,13 @@ def write_to_csv(results, filename):
         i_dict = i.serialize()
         i_dict.update(i.neo.serialize())
         final.append(i_dict)
-    
+
     with open(filename, 'w') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for i in final:
             writer.writerow(i)
+
 
 def write_to_json(results, filename):
     """Write an iterable of `CloseApproach` objects to a JSON file.
@@ -57,6 +58,6 @@ def write_to_json(results, filename):
         i_dict = i.serialize()
         i_dict['neo'] = i.neo.serialize()
         final.append(i_dict)
-    
+
     with open(filename, 'w') as f:
         json.dump(final, f)
