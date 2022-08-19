@@ -133,7 +133,7 @@ def create_filters(
     :param hazardous: Whether the NEO of a matching `CloseApproach` is potentially hazardous.
     :return: A collection of filters for use with `query`.
     """
-    # TODO: Decide how you will represent your filters.
+    # represent filters.
 
     filter_list = []
 
@@ -170,7 +170,7 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-    # TODO: Produce at most `n` values from the given iterator.
+    # Produce at most `n` values from the given iterator.
 
     if n == 0 or n is None:
         return iterator

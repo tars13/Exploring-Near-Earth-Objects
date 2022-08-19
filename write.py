@@ -29,7 +29,6 @@ def write_to_csv(results, filename):
         'designation', 'name', 'diameter_km', 'potentially_hazardous'
     )
 
-    # TODO: Write the results to a CSV file, following the specification in the instructions.
     final = []
     for i in results:
         i_dict = i.serialize()
@@ -53,7 +52,6 @@ def write_to_json(results, filename):
     :param results: An iterable of `CloseApproach` objects.
     :param filename: A Path-like object pointing to where the data should be saved.
     """
-    # TODO: Write the results to a JSON file, following the specification in the instructions.
     final = []
     for i in results:
         i_dict = i.serialize()
